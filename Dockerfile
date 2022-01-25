@@ -1,15 +1,10 @@
-FROM python:3.8
-# FROM gitlab-registry.gs.mil/bluefactory/docker/python:3.10.0-2 
+FROM ubuntu:16.04
 
-# set the working directory in the container
-WORKDIR /code
+RUN apt-get update && apt-get install -y python python-pip
 
-# copy the content of the local src directory to the working directory
-COPY src/ .
-
+# RUN pip install flask 
 RUN pip3 install -r requirements.txt
 
-# EXPOSE 5042
+COPY src/ /opt/
 
-# run the app
-CMD ["python3", "./app.py"]
+ENTRYPOINT FLASK_APP=/opt/app.py flask run --host=0.0.0.0 --port=8080
