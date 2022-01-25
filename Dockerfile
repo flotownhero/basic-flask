@@ -9,7 +9,7 @@ COPY src/ .
 
 RUN pip3 install -r requirements.txt
 
-EXPOSE 5042
+# EXPOSE 5042
 
 # run the app
 CMD ["python3", "./app.py"]
